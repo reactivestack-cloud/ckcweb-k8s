@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ckc-edu-ph-tls
+spec:
+  secretName: ckc-edu-ph
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: ckc.edu.ph
+  dnsNames:
+    - ckc.edu.ph
+    - www.ckc.edu.ph
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - ckc.edu.ph
+          - www.ckc.edu.ph
